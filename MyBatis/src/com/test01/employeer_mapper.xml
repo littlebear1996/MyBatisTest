@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+ <mapper namespace="com.test01.employeer_mapper"> 
+   <!-- 查找 -->
+   <select id="findEmployeerById" parameterType="Integer" resultType="Employeer">
+     select * from t_employeer where employeer_id=#{employeer_id}
+   </select>
+   <!-- 插入 -->
+   <!-- userGeneratedKey设置为“true”表明mybais获取由数据库自动生成的主键；keyProperty="id"指定把获取到的主键注入到Employeer的
+   employeer_id属性 -->
+   <insert id="addEmployeer" parameterType="Employeer" useGeneratedKeys="true" keyProperty="employeer_id">
+     insert into t_employeer(employeer_name,employeer_id,employeer_age,employeer_department,employeer_worktype)
+     values(#{employeer_name},#{employeer_id},#{employeer_age},#{employeer_department},#{employeer_worktype})
+   </insert>
+   <!-- 删除 -->
+   <delete id="deleteEmployeerById" parameterType="Integer">
+     delete from t_employeer where employeer_id=#{employeer_id}
+   </delete>
+   <!-- 更新 -->
+   <update id="updateEmployeer" parameterType="Employeer">
+      update t_employeer set employeer_name=#{employeer_name},employeer_age=#{employeer_age},
+     employeer_department=#{employeer_department},employeer_worktype=#{employeer_worktype}
+     where employeer_id=#{employeer_id}
+   </update>
+ </mapper>
